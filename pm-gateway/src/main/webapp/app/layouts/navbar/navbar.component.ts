@@ -53,7 +53,7 @@ export class NavbarComponent implements OnInit {
     }
 
     login() {
-        this.authServerProvider.getLock().show();
+        this.authServerProvider.showLogin();
     }
 
     logout() {

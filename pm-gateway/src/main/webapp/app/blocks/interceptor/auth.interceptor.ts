@@ -13,7 +13,7 @@ export class AuthInterceptor extends HttpInterceptor {
     }
 
     requestIntercept(options?: RequestOptionsArgs): RequestOptionsArgs {
-        let token = this.localStorage.retrieve('id_token') || this.sessionStorage.retrieve('id_token');
+        let token = this.localStorage.retrieve('xxxx') || this.sessionStorage.retrieve('xxxx');
         if (!!token) {
             options.headers.append('Authorization', 'Bearer ' + token);
         }

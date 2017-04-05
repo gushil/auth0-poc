@@ -5,5 +5,6 @@ let _DEBUG_INFO_ENABLED = true; // This value will be overwritten by webpack
 /* @toreplace DEBUG_INFO_ENABLED */
 export const VERSION = _VERSION;
 export const DEBUG_INFO_ENABLED = _DEBUG_INFO_ENABLED;
-export const AUTH0_CLIENT_ID = '7tO2xdbOBv39YO4BcIhx8yNqZXmv4vgH';
+export const AUTH0_CLIENT_ID = 'cg8JQ1ubaI0vX1P2kZoIO5a11DloD5EW';
 export const AUTH0_DOMAIN = 'oc4.auth0.com';
+export const AUTH0_LOGIN_URL = 'skeleton.openclinica.info/auth';

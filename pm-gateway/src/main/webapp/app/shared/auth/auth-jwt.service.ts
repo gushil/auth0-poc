@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { LocalStorageService, SessionStorageService } from 'ng2-webstorage';
-import { AUTH0_CLIENT_ID, AUTH0_DOMAIN } from '../../app.constants';
+import { AUTH0_CLIENT_ID, AUTH0_DOMAIN, AUTH0_LOGIN_URL } from '../../app.constants';
 import { Authentication, WebAuth } from  'auth0-js';
 import Auth0Lock from 'auth0-lock';
 import { tokenNotExpired } from 'angular2-jwt';
@@ -26,6 +26,8 @@ export class AuthServerProvider {
         domain: AUTH0_DOMAIN,
         clientID: AUTH0_CLIENT_ID
     });
+
+    redirectUri = 'http://' +  window.location.host + '/';
 
     constructor(
         private http: Http,
@@ -78,7 +80,10 @@ export class AuthServerProvider {
     }
 
     logout () {
-        this.$localStorage.clear('id_token');
+        this.$localStorage.clear();
+        this.webAuth.logout({
+            returnTo: this.redirectUri
+        });
     }
 
     public getLock() {
@@ -94,6 +99,10 @@ export class AuthServerProvider {
     }
 
     public isAuthenticated() {
-        return tokenNotExpired('jhi-id_token');
+        return tokenNotExpired('jhi_id_token');
+    }
+
+    public showLogin() {
+        window.location.href = 'http://' + AUTH0_LOGIN_URL + '?redirect_uri=' + this.redirectUri;
     }
 }
